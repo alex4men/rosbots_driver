@@ -13,10 +13,10 @@ ros::NodeHandle nh;
 #define LED_BUILTIN 13
 #endif
 
-#define M_LEFT_PWM 6
-#define M_LEFT_FR 7
-#define M_RIGHT_PWM 5
-#define M_RIGHT_FR 4
+#define M_LEFT_PWM 10
+#define M_LEFT_FR 12
+#define M_RIGHT_PWM 11
+#define M_RIGHT_FR 13
 
 void turnWheel( const std_msgs::Float32 &wheel_power,
                 unsigned int pwm_pin,
@@ -27,7 +27,7 @@ void turnWheel( const std_msgs::Float32 &wheel_power,
         analogWrite(pwm_pin, (unsigned int)(255 * factor));
     } else {
         digitalWrite(fr_pin, HIGH);
-        analogWrite(pwm_pin, (unsigned int)(255 * (1.0f + factor)));
+        analogWrite(pwm_pin, (unsigned int)(255 * (-1.0f * factor)));
     }   
 }
 void rightWheelCb( const std_msgs::Float32 &wheel_power ) {
