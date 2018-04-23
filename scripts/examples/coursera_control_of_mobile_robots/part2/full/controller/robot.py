@@ -33,8 +33,8 @@ class Robot:
         # Diff drive robot attributes can be stored in parameter server
         # but otherwise a ROSbots dimensions are measured as the defaults
         # wheelbase of 140mm and wheel diameter of 70mm
-        self.wheelbase = rospy.get_param("wheelbase", default=0.14)
-        self.wheel_radius = rospy.get_param("wheel_radius", default=0.035)
+        self.wheelbase = rospy.get_param("wheelbase", default=0.081)
+        self.wheel_radius = rospy.get_param("wheel_radius", default=0.021)
 
         # Wheel min and max no-load velocities in radians per sec
         self.wheel_speed_min = rospy.get_param("wheel_speed/min", default=3.1)
