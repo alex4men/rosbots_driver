@@ -69,10 +69,10 @@ class ImgContainer(object):
         
     def __init__(self):        
         self._picamera = PiCamera()
-        self._picamera.resolution = (640,480)
+        self._picamera.resolution = (320,240)
         self._picamera.vflip = False 
         self._picamera.hflip = False 
-        self._picamera.framerate = 60
+        self._picamera.framerate = 10
         self._compress_stream = io.BytesIO()
         
     def get_cv_image_compress(self):
@@ -86,11 +86,11 @@ def main():
     rospy.on_shutdown(shutdown_cb)
     
     image_pub = rospy.Publisher("~image/compressed",
-                                CompressedImage, queue_size=5)
+                                CompressedImage, queue_size=1)
     img_ct = ImgContainer()
     
     prev_connections = 0
-    rate = rospy.Rate(15) # 5 Hz
+    rate = rospy.Rate(10) # 5 Hz
     while not rospy.is_shutdown():
         img_compress_msg = img_ct.get_image_msg()
         image_pub.publish(img_compress_msg)
